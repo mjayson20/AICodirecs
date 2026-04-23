@@ -1,0 +1,106 @@
+{
+  "name": "ai-code-suggester",
+  "displayName": "AI Code Suggester",
+  "description": "Local AI-powered inline code completions (free, no API key required)",
+  "version": "0.0.1",
+  "publisher": "ai-code-suggester",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mjayson20/AICodirecs.git"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Machine Learning"
+  ],
+  "keywords": [
+    "ai",
+    "autocomplete",
+    "code completion",
+    "copilot",
+    "local"
+  ],
+  "activationEvents": [
+    "onLanguage:python",
+    "onLanguage:javascript",
+    "onLanguage:typescript"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "aiCodeSuggester.triggerSuggestion",
+        "title": "AI Code Suggester: Trigger Suggestion"
+      },
+      {
+        "command": "aiCodeSuggester.showStats",
+        "title": "AI Code Suggester: Show Stats"
+      },
+      {
+        "command": "aiCodeSuggester.toggleEnabled",
+        "title": "AI Code Suggester: Toggle Enable/Disable"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "aiCodeSuggester.triggerSuggestion",
+        "key": "ctrl+shift+space",
+        "mac": "cmd+shift+space",
+        "when": "editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "AI Code Suggester",
+      "properties": {
+        "aiCodeSuggester.serverUrl": {
+          "type": "string",
+          "default": "http://127.0.0.1:8000",
+          "description": "URL of the local FastAPI inference server"
+        },
+        "aiCodeSuggester.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable inline suggestions"
+        },
+        "aiCodeSuggester.debounceMs": {
+          "type": "number",
+          "default": 600,
+          "description": "Milliseconds to wait after typing before requesting a suggestion"
+        },
+        "aiCodeSuggester.maxContextLines": {
+          "type": "number",
+          "default": 20,
+          "description": "Number of lines before cursor to send as context"
+        },
+        "aiCodeSuggester.maxTokens": {
+          "type": "number",
+          "default": 80,
+          "description": "Maximum tokens to generate per suggestion"
+        },
+        "aiCodeSuggester.languages": {
+          "type": "array",
+          "default": ["python", "javascript", "typescript"],
+          "description": "Languages to activate suggestions for"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts",
+    "package": "npx vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.3.0",
+    "@vscode/vsce": "^2.22.0"
+  }
+}

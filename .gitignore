@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+.env
+
+# Model weights (large files — store on Drive or HF Hub)
+model/data/
+model/checkpoints/
+backend/fine_tuned_model/
+*.bin
+*.safetensors
+*.gguf
+
+# Node / VS Code extension
+extension/node_modules/
+extension/out/
+extension/*.vsix
+
+# Jupyter
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+*.swo
